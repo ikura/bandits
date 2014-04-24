@@ -22,10 +22,13 @@ int main(int argc, const char * argv[])
 		
 		MASmartBandit *smartBandit = [[MASmartBandit alloc] init];
 		smartBandit.banditType = kDoubleBandit;
-		
+		smartBandit.banditDirection = kDecreasing; // Optimise for smaller values;
 		smartBandit.epsilon = 1.0;
 		smartBandit.epsilonScaleFactor = 0.999;
+
+
 		bandit.algorithm = smartBandit;
+
 
 //		setupBinaryArms(bandit);
 		setupDoubleArms(bandit);

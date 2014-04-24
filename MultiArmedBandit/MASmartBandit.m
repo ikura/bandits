@@ -26,10 +26,14 @@
 - (NSString *)bestBandit
 {
 	NSString *best = self.banditMu.allKeys.firstObject;
+	double bestValue = [self.banditMu[best] doubleValue];
 
 	for (NSString *bandit in self.banditMu.allKeys)
 	{
-		if ([self.banditMu[bandit] doubleValue] > [self.banditMu[best] doubleValue]) best = bandit;
+		double value = [self.banditMu[bandit] doubleValue];
+
+		if (self.banditDirection == kIncreasing && bestValue < value) best = bandit;
+		else if (self.banditDirection == kDecreasing && bestValue > value) best = bandit;
 	}
 
 	return best;

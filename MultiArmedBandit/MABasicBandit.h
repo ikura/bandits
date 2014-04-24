@@ -15,6 +15,12 @@ typedef enum {
 	kDoubleBandit,
 } MABanditType;
 
+
+typedef enum {
+	kIncreasing,
+	kDecreasing,
+} MABanditDirection;
+
 @interface MABasicBandit : NSObject<MABanditAlgorithm>
 
 @property (nonatomic, strong) NSMutableDictionary *banditFails;
@@ -22,6 +28,7 @@ typedef enum {
 @property (nonatomic, strong) NSMutableDictionary *banditMu;
 
 @property (nonatomic) MABanditType banditType;
+@property (nonatomic) MABanditDirection banditDirection;
 
 @property (nonatomic, copy) MABanditTrialDelegate delegate;
 
