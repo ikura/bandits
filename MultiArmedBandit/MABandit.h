@@ -10,14 +10,14 @@
 
 // MABanditBlocks should encompass all relevant parameters to ensure that P(YES) does not vary.
 
-typedef BOOL(^MABanditBlock)(void);
+typedef NSNumber *(^MABanditBlock)(void);
 
 @protocol MABanditAlgorithm;
 
 @interface MABandit : NSObject
 
 // Adds a new bandit with a name to identify it
-- (void)addBanditBlock:(MABanditBlock)block withName:(NSString *)name;
+- (void)addBanditBlock:(id)block withName:(NSString *)name;
 
 // Steps the MABanditAlgorithm - returning the name of the bandit chosen
 - (NSString *)step;

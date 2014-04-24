@@ -28,15 +28,15 @@
 	__weak MABandit *weakSelf = self;
 	if (_algorithm.delegate == nil) {
 		_algorithm.delegate = ^(NSString *name){
-			MABanditBlock block = weakSelf.bandits[name];
-			return block();
+			MABanditBlock result = weakSelf.bandits[name];
+			return result();
 		};
 	}
 
 	return _algorithm;
 }
 
-- (void)addBanditBlock:(MABanditBlock)block withName:(NSString *)name
+- (void)addBanditBlock:(id)block withName:(NSString *)name
 {
 	self.bandits[name] = [block copy];
 	[self.algorithm addBanditName:name];

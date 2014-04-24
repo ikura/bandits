@@ -10,11 +10,18 @@
 
 #import "MABanditAlgorithm.h"
 
+typedef enum {
+	kBinaryBandit,
+	kDoubleBandit,
+} MABanditType;
+
 @interface MABasicBandit : NSObject<MABanditAlgorithm>
 
 @property (nonatomic, strong) NSMutableDictionary *banditFails;
 @property (nonatomic, strong) NSMutableDictionary *banditSuccesses;
+@property (nonatomic, strong) NSMutableDictionary *banditMu;
 
+@property (nonatomic) MABanditType banditType;
 
 @property (nonatomic, copy) MABanditTrialDelegate delegate;
 

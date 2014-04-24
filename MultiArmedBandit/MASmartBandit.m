@@ -10,17 +10,9 @@
 
 @interface MASmartBandit()
 
-@property (nonatomic, strong) NSMutableDictionary *banditMu;
-
 @end
 
 @implementation MASmartBandit
-
-- (NSMutableDictionary *)banditMu
-{
-	if (_banditMu) return _banditMu;
-	else return _banditMu = NSMutableDictionary.dictionary;
-}
 
 - (BOOL)chooseBest
 {
@@ -57,14 +49,8 @@
 
 - (NSString *)runTrial
 {
-	NSString *result = [super runTrial];
-
-	double F = [self.banditFails[result] doubleValue];
-	double S = [self.banditSuccesses[result] doubleValue];
-
-	self.banditMu[result] = @(S / (S + F));
 	self.epsilon = self.epsilon * 0.99;
-	return result;
+	return [super runTrial];
 }
 
 - (NSString *)description

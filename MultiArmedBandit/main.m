@@ -10,29 +10,24 @@
 #import "MABandit.h"
 #import "MASmartBandit.h"
 
+void setupBinaryArms(MABandit *bandit);
+void setupDoubleArms(MABandit *bandit);
+
 int main(int argc, const char * argv[])
 {
 
 	@autoreleasepool {
 	    
 		MABandit *bandit = [[MABandit alloc] init];
+		
 		MASmartBandit *smartBandit = [[MASmartBandit alloc] init];
+		smartBandit.banditType = kDoubleBandit;
+		
 		smartBandit.epsilon = 1.0;
 		bandit.algorithm = smartBandit;
 
-		[bandit addBanditBlock:^BOOL{
-			return (arc4random_uniform(100) < 7);
-		} withName:@"A"];
-
-		[bandit addBanditBlock:^BOOL{
-			return (arc4random_uniform(100) < 9);
-		} withName:@"B"];
-
-		[bandit addBanditBlock:^BOOL{
-			return (arc4random_uniform(100) < 8);
-		} withName:@"C"];
-
-
+//		setupBinaryArms(bandit);
+		setupDoubleArms(bandit);
 		while (1)
 		{
 			NSLog(@"Chose bandit: %@", [bandit step]);
@@ -43,3 +38,37 @@ int main(int argc, const char * argv[])
     return 0;
 }
 
+void setupBinaryArms(MABandit *bandit)
+{
+	[bandit addBanditBlock:^NSNumber *{
+		return @(arc4random_uniform(100) < 7);
+	} withName:@"A"];
+
+	[bandit addBanditBlock:^NSNumber *{
+		return @(arc4random_uniform(100) < 9);
+	} withName:@"B"];
+
+	[bandit addBanditBlock:^NSNumber *{
+		return @(arc4random_uniform(100) < 8);
+	} withName:@"C"];
+}
+
+
+void setupDoubleArms(MABandit *bandit)
+{
+	[bandit addBanditBlock:^NSNumber *{
+		return @(arc4random_uniform(1000));
+	} withName:@"A"];
+
+	[bandit addBanditBlock:^NSNumber *{
+		return @(arc4random_uniform(100));
+	} withName:@"B"];
+
+	[bandit addBanditBlock:^NSNumber *{
+		return @(arc4random_uniform(99));
+	} withName:@"C"];
+
+	[bandit addBanditBlock:^NSNumber *{
+		return @(arc4random_uniform(1001));
+	} withName:@"D"];
+}

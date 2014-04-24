@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef BOOL(^MABanditTrialDelegate)(NSString *name);
+typedef NSNumber*(^MABanditTrialDelegate)(NSString *name);
 
 // Abstract Interface for MABanditAlgorithm
 
