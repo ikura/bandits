@@ -49,7 +49,7 @@
 
 - (NSString *)runTrial
 {
-	self.epsilon = self.epsilon * 0.99;
+	self.epsilon = self.epsilon * self.epsilonScaleFactor;
 	return [super runTrial];
 }
 

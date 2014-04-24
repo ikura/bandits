@@ -24,6 +24,7 @@ int main(int argc, const char * argv[])
 		smartBandit.banditType = kDoubleBandit;
 		
 		smartBandit.epsilon = 1.0;
+		smartBandit.epsilonScaleFactor = 0.999;
 		bandit.algorithm = smartBandit;
 
 //		setupBinaryArms(bandit);

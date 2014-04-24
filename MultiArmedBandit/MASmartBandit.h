@@ -13,5 +13,6 @@
 // Epsilon Greedy
 
 @property (nonatomic) double epsilon;
+@property (nonatomic) double epsilonScaleFactor;
 
 @end
